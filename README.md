@@ -60,10 +60,9 @@ They use the random subspace method and feature bagging to prevent overfitting b
 Was our final model. The reason is that SVM is one of the most robust and accurate among the other classification algorithms, as It can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces. Furthermore, SVM is effective in cases where the number of dimensions is greater than the number of samples, which is the case in our problem.
 For choosing the best hyper parameters we started by using a polynomial kernel and searched for the best degree but as we chose from the graph the results were decreasing as the model was overfitting so we tried the rbf, liner and sigmoid kernel. To model was the uncertainty between each run we created each experiment about 100 times then plotted the results using boxplot graph as shown
  
-# Performance Analysis 
 SVMs outperformed Random Forests, averaging 85%-93% accuracy on different runs.
 
-# Comparison between the modules and the approach 
+# The Approach, Challenges, and Tradoffs
 - **Data imbalancing**; we had 363 images, with only 36% of them being for females and the rest being for males. This unwanted bias had a significant impact on our accuracy and made our model extremely sensitive to randomness in splitting. To address this issue, we sacrificed some of the male data in order to achieve unbiased and evenly distributed data. 
 
 - **preprocessing**; we used a variety of preprocessing techniques such as contrast enhancement, dilation, erosion, and so on. Unfortunately, our accuracy suffered as a result of this preprocessing. We discovered that most of our preprocessing techniques had a significant impact on our features and reduced their impact. Dilation and erosion, for example, had an effect on the curvatures of the letters. As a result, we extracted bad Hinge features and so on. As a result, we eliminated the majority of the preprocessing steps, leaving only those necessary for feature extraction. For example, removing shadows to make contour extraction easier.
