@@ -17,7 +17,7 @@ So handwriting which is observed during the examination may be proven to be show
 
 
 # Project Pipeline 
-Our system is implemented using two sub-pipelines: the data pipeline and the inference (model) pipeline. This separation of work between how we preprocess the data and how we build the model was essential for fast development and experiment, it also helped to make the model ready for deployment. 
+Our system is implemented using two sub-pipelines: the data pipeline and the inference (model) pipeline. This separation of work between how we preprocess the data and how we build the model was essential for fast development and experiment, it also helped to make the model ready for deployment.  
 #### Data Pipeline
 This pipeline is used for transforming input images to the required shape before using it in the model. It passes images through a preprocessor which extracts contours from the image and it passes these contours to the feature extractor to generate feature vectors.
 #### Model Pipeline
@@ -27,33 +27,37 @@ Another way to represent the system's general architecture is by representing th
 
 
 # System Modules
-#### Preprocessing
-The main task for the preprocessing module is to clear the data and fix any issues in it. After we explored the data and do some analysis on it we found some issues and we tried to solve them as follows:
+#### Preprocessing 
+The main task for the preprocessing module is to clear the data and fix any issues in it. After we explored the data and do some analysis on it we found some issues and we tried to solve them as follows: 
 - **Data Unbalancing**
 The data unbalancing problem happens when the samples given for a class are much more than the sample for the second the other class. This can damage the generalization performance for the model as it will tend to classify all points to the first class.
 To mitigate this problem we did the following:
 Created the dev set with an equal number of labels for each class so that we can rely on it for  measuring generalization performance
 The number of males in the train set is slightly higher than the number of females by about 30 examples. This threshold was found empirically as we wanted to use as much data as we can but were constrained to the performance of the females class
+
 - **Shadows on Images**
 The bottom third or so of the image had hand shadows due to poor imaging conditions, no useful information was in that area, but it proved to be an issue during preprocessing due to thresholding transforming the shadow into a black blob. This was overcome by unifying the color of the bottom third or so of the image to a gray color. 
 #### Feature extraction
+
 - **Hinge Features**
-Hinge features capture information about the curvature and slant / angle of line at the point of intersection between two lines. This is done by computing the joint probability distribution of the orientations of the two legs. This extractor has 2 parameters. The length of each leg, and the number of angle bins. In our implementation we obtain legs by finding all contours in the image, then we filter out any contours shorter than 25 pixels. We then compute the angles between each two neighboring contours and construct a histogram using the angles 1, 2 (demonstrated in the above figure).
+It capture information about the curvature and slant / angle of line at the point of intersection between two lines. This is done by computing the joint probability distribution of the orientations of the two legs. This extractor has 2 parameters. The length of each leg, and the number of angle bins. In our implementation we obtain legs by finding all contours in the image, then we filter out any contours shorter than 25 pixels. We then compute the angles between each two neighboring contours and construct a histogram using the angles 1, 2 (demonstrated in the above figure).
 
 - **COLD Features**
-COLD is based on the shape context descriptor. In a nutshell, we pick points from the contours of the shape, we then construct a set of vectors between the point pi and all other n-1 points, we then build a histogram based on the relative coordinates  between  pi  and the n-1 other points. COLD further uses dominant points; such as straight, angle-oriented features and curvature over contours of handwritten text components.
+Is based on the shape context descriptor. In a nutshell, we pick points from the contours of the shape, we then construct a set of vectors between the point pi and all other n-1 points, we then build a histogram based on the relative coordinates  between  pi  and the n-1 other points. COLD further uses dominant points; such as straight, angle-oriented features and curvature over contours of handwritten text components.
 Standard Scaler
 This module was fairly simple. It normalized our data by subtracting the mean and dividing by the standard deviation.
+
 #### PCA 
 This module helped us speed up our training by analyzing our components/features and sorting them descendingly by variance. This helped us to focus on more discriminatory features and thus train faster with fewer features and lower resource usage, allowing faster experimentation. For choosing the number of components we used the elbow method as illustrated in this graph and we chose a value between 80 to 90 components.  
 #### Model and model selection
+
 - **Random forest**
 We decided to use the random forest as our first model for various reasons:
 They are based on trees, so the scaling of the variables doesn't matter. Any monotonic transformation of a single variable is implicitly captured by a tree.
 They use the random subspace method and feature bagging to prevent overfitting by decreasing the correlation between decision trees considerably. Hence, increasing the mean accuracy of predictions automated feature selection is built in. For Hypertuning the number of estimators parameter we used a grid search from 10 to 1000 with a step size equal to 50 and get the following results
 
 - **SVM**
-SVM was our final model. The reason is that SVM is one of the most robust and accurate among the other classification algorithms, as It can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces. Furthermore, SVM is effective in cases where the number of dimensions is greater than the number of samples, which is the case in our problem.
+Was our final model. The reason is that SVM is one of the most robust and accurate among the other classification algorithms, as It can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces. Furthermore, SVM is effective in cases where the number of dimensions is greater than the number of samples, which is the case in our problem.
 For choosing the best hyper parameters we started by using a polynomial kernel and searched for the best degree but as we chose from the graph the results were decreasing as the model was overfitting so we tried the rbf, liner and sigmoid kernel. To model was the uncertainty between each run we created each experiment about 100 times then plotted the results using boxplot graph as shown
  
 # Performance Analysis 
