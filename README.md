@@ -1,7 +1,6 @@
 # Detecto
-A Handwriting Based Gender Classification Model
-![Detecto-logos_white](https://user-images.githubusercontent.com/56788883/171069394-a291960b-0003-4f8a-970c-6bc295dc575b.png#gh-dark-mode-only)
-![Detecto-logos_black](https://user-images.githubusercontent.com/56788883/171069398-ccd82ce5-dd90-4d65-8d8b-617f4aa51031.png#gh-light-mode-only)
+## A Handwriting Based Gender Classification Model
+![Detecto](https://user-images.githubusercontent.com/56788883/171385890-93b8365c-20d4-4e49-bbdc-b55366458ea0.png)
 
 # Introduction to the problem
 Handwriting is an important piece of evidence that is examined in the questioned document to ensure its authenticity. 
