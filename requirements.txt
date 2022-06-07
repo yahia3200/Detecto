@@ -1,0 +1,5 @@
+numpy==1.19.5
+opencv_python==4.5.5.64
+Pillow==9.1.1
+scikit_learn==0.24.2
+tqdm==4.64.0
