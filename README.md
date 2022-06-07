@@ -29,7 +29,7 @@ Our system is implemented using two sub-pipelines: the data pipeline and the inf
 This pipeline is used for transforming input images to the required shape before using it in the model. It passes images through a preprocessor which extracts contours from the image and it passes these contours to the feature extractor to generate feature vectors.
 
 <p align="center">
- <img  src="screenshots/data%20pipe.png" alt="logo">
+ <img  src="screenshots/data%20pipe.png" alt="data pipe">
 </p>
 
 ### Model Pipeline
@@ -37,7 +37,7 @@ This pipeline is used for transforming input images to the required shape before
 This pipeline is responsible for generating the predictions from the given feature vectors. The pipeline starts by normalizing the data to reduce the numerical difference between the features then it reduces the number of features using PCA then uses a classification algorithm such as Random Forest or SVM to get the prediction.
 
 <p align="center">
- <img  src="screenshots/model%20pipe.png" alt="logo">
+ <img  src="screenshots/model%20pipe.png" alt="model pipe">
 </p>
 
 ### Data Flow
@@ -45,7 +45,7 @@ This pipeline is responsible for generating the predictions from the given featu
 Another way to represent the system's general architecture is by representing the output and input data shape between each module. This representation is very useful for debugging as many errors happen because of wrong input shapes.
 
 <p align="center">
- <img  src="screenshots/data%20flow.jpg" alt="logo">
+ <img  src="screenshots/data%20flow.jpg" alt="data flow">
 </p>
 
 ## System Modules
@@ -59,7 +59,7 @@ The main task for the preprocessing module is to clear the data and fix any issu
 The data unbalancing problem happens when the samples given for a class are much more than the sample for the second the other class. This can damage the generalization performance for the model as it will tend to classify all points to the first class.
 
 <p align="center">
- <img  src="screenshots/class%20ratio.jpg" alt="logo">
+ <img  src="screenshots/class%20ratio.jpg" alt="class ratio">
 </p>
 
 To mitigate this problem we did the following:
@@ -79,7 +79,7 @@ The bottom third or so of the image had hand shadows due to poor imaging conditi
 It capture information about the curvature and slant / angle of line at the point of intersection between two lines. This is done by computing the joint probability distribution of the orientations of the two legs. This extractor has 2 parameters. The length of each leg, and the number of angle bins. In our implementation we obtain legs by finding all contours in the image, then we filter out any contours shorter than 25 pixels. We then compute the angles between each two neighboring contours and construct a histogram using the angles 1, 2 (demonstrated in the above figure).
 
 <p align="center">
-  <img  width="350px" src="screenshots/hinge.png" alt="logo">
+  <img  width="350px" src="screenshots/hinge.png" alt="hinge">
 </p>
 
 #### COLD Features
@@ -91,7 +91,7 @@ Is based on the shape context descriptor. In a nutshell, we pick points from the
 This module helped us speed up our training by analyzing our components/features and sorting them descending by variance. This helped us to focus on more discriminatory features and thus train faster with fewer features and lower resource usage, allowing faster experimentation. For choosing the number of components we used the elbow method as illustrated in this graph and we chose a value between 80 to 90 components.
 
 <p align="center">
- <img  src="screenshots/pca.jpg" alt="logo">
+ <img width="600px" src="screenshots/pca.jpg" alt="pca">
 </p>
 
 ### Model Selection
@@ -103,7 +103,7 @@ They are based on trees, so the scaling of the variables doesn't matter. Any mon
 They use the random subspace method and feature bagging to prevent overfitting by decreasing the correlation between decision trees considerably. Hence, increasing the mean accuracy of predictions automated feature selection is built in. For Hypertuning the number of estimators parameter we used a grid search from 10 to 1000 with a step size equal to 50 and get the following results
 
 <p align="center">
-  <img  src="screenshots/Random%20Forest.jpg" alt="logo">
+  <img width="600px" src="screenshots/Random%20Forest.jpg" alt="random forest acc">
 </p>
 
 #### SVM
@@ -112,7 +112,7 @@ Was our final model. The reason is that SVM is one of the most robust and accura
 For choosing the best hyper parameters we started by using a polynomial kernel and searched for the best degree but as we chose from the graph the results were decreasing as the model was overfitting so we tried the rbf, liner and sigmoid kernel. To model was the uncertainty between each run we created each experiment about 100 times then plotted the results using boxplot graph as shown
 
 <p align="center">
-  <img  src="screenshots/svm.jpg" alt="logo">
+  <img width="600px" src="screenshots/svm.jpg" alt="svm acc">
 </p>
 
 #### SVMs outperformed Random Forests, averaging 85%-89% accuracy on different runs
@@ -133,19 +133,19 @@ $F1 Score = 2 *\dfrac{Recall*Precision}{Recall + Precision}$
 ### Precision-Recall Curve
 
 <p align="center">
-  <img  src="screenshots/pr.png" alt="logo">
+  <img width="600px" src="screenshots/pr.png" alt="pr curve">
 </p>
 
 ### ROC Curve
 
 <p align="center">
-  <img  src="screenshots/roc.png" alt="logo">
+  <img width="600px" src="screenshots/roc.png" alt="roc curve">
 </p>
 
 ### Inference Time
 
 <p align="center">
-  <img  src="screenshots/time.png" alt="logo">
+  <img width="600px" src="screenshots/time.png" alt="inference time">
 </p>
 
 ## Enhancement & Future Work
