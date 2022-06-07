@@ -125,8 +125,7 @@ When evaluating a machine learning classifier the traditional method of calculat
 
 - Recall (Sensitivity) - Recall is the ratio of correctly predicted positive observations to all observations in the actual class. $Recall = \dfrac{TP}{TP +FN}$
 
-- F1 Score is calculated as the weighted average of Precision and Recall. As a result, this score considers both false positives and false negatives. It is not as intuitive as accuracy, but F1 is usually more useful than accuracy, especially if the class distribution is uneven. Accuracy works best when the costs of false positives and false negatives are comparable. If the cost of false positives and false negatives differ significantly, it is preferable to consider both Precision and Recall.
-$F1 Score = 2 *\dfrac{Recall*Precision}{Recall + Precision}$
+- F1 Score is calculated as the weighted average of Precision and Recall. As a result, this score considers both false positives and false negatives. It is not as intuitive as accuracy, but F1 is usually more useful than accuracy, especially if the class distribution is uneven. Accuracy works best when the costs of false positives and false negatives are comparable. If the cost of false positives and false negatives differ significantly, it is preferable to consider both Precision and Recall. $F1 Score = 2 *\dfrac{Recall*Precision}{Recall + Precision}$
 
 ## Results
 
