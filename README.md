@@ -6,11 +6,11 @@
 
 <div align="center">
 
-[![GitHub contributors](https://img.shields.io/github/contributors/yahia3200/Detecto)](https://github.com/Eagle-Hunting-Game/contributors)
-[![GitHub issues](https://img.shields.io/github/issues/yahia3200/Detecto)](https://github.com/gaserashraf/Eagle-Hunting-Game/issues)
-[![GitHub forks](https://img.shields.io/github/forks/yahia3200/Detecto)](https://github.com/gaserashraf/Eagle-Hunting-Game/network)
-[![GitHub stars](https://img.shields.io/github/stars/yahia3200/Detecto)](https://github.com/gaserashraf/Eagle-Hunting-Game/stargazers)
-[![GitHub license](https://img.shields.io/github/license/yahia3200/Detecto)](https://github.com/gaserashraf/Eagle-Hunting-Game/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/yahia3200/Detecto)](https://img.shields.io/github/contributors/yahia3200/Detecto)
+[![GitHub issues](https://img.shields.io/github/issues/yahia3200/Detecto)](https://github.com/yahia3200/Detecto/issues)
+[![GitHub forks](https://img.shields.io/github/forks/yahia3200/Detecto)](https://github.com/yahia3200/Detecto/network)
+[![GitHub stars](https://img.shields.io/github/stars/yahia3200/Detecto)](https://github.com/yahia3200/Detecto/stargazers)
+[![GitHub license](https://img.shields.io/github/license/yahia3200/Detecto)](https://github.com/yahia3200/Detecto/blob/master/LICENSE)
 
 </div>
 
