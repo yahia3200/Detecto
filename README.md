@@ -29,7 +29,7 @@ Our system is implemented using two sub-pipelines: the data pipeline and the inf
 This pipeline is used for transforming input images to the required shape before using it in the model. It passes images through a preprocessor which extracts contours from the image and it passes these contours to the feature extractor to generate feature vectors.
 
 <p align="center">
- <img  src="screenshots/data%20pipe.png" alt="data pipe">
+ <img  src="screenshots/data_pipe.png" alt="data pipe">
 </p>
 
 ### Model Pipeline
@@ -37,7 +37,7 @@ This pipeline is used for transforming input images to the required shape before
 This pipeline is responsible for generating the predictions from the given feature vectors. The pipeline starts by normalizing the data to reduce the numerical difference between the features then it reduces the number of features using PCA then uses a classification algorithm such as Random Forest or SVM to get the prediction.
 
 <p align="center">
- <img  src="screenshots/model%20pipe.png" alt="model pipe">
+ <img  src="screenshots/model_pipe.png" alt="model pipe">
 </p>
 
 ### Data Flow
@@ -45,7 +45,7 @@ This pipeline is responsible for generating the predictions from the given featu
 Another way to represent the system's general architecture is by representing the output and input data shape between each module. This representation is very useful for debugging as many errors happen because of wrong input shapes.
 
 <p align="center">
- <img  src="screenshots/data%20flow.jpg" alt="data flow">
+ <img  src="screenshots/data_flow.jpg" alt="data flow">
 </p>
 
 ## System Modules
@@ -59,7 +59,7 @@ The main task for the preprocessing module is to clear the data and fix any issu
 The data unbalancing problem happens when the samples given for a class are much more than the sample for the second the other class. This can damage the generalization performance for the model as it will tend to classify all points to the first class.
 
 <p align="center">
- <img  src="screenshots/class%20ratio.jpg" alt="class ratio">
+ <img  src="screenshots/class_ratio.jpg" alt="class ratio">
 </p>
 
 To mitigate this problem we did the following:
@@ -103,7 +103,7 @@ They are based on trees, so the scaling of the variables doesn't matter. Any mon
 They use the random subspace method and feature bagging to prevent overfitting by decreasing the correlation between decision trees considerably. Hence, increasing the mean accuracy of predictions automated feature selection is built in. For Hypertuning the number of estimators parameter we used a grid search from 10 to 1000 with a step size equal to 50 and get the following results
 
 <p align="center">
-  <img width="600px" src="screenshots/Random%20Forest.jpg" alt="random forest acc">
+  <img width="600px" src="screenshots/Random_Forest.jpg" alt="random forest acc">
 </p>
 
 #### SVM
