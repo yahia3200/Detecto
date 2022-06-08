@@ -15,9 +15,11 @@ if __name__ == "__main__":
     y_pred = []
     times = []
 
+    # Load Model
     data_pipe = pickle.load(open('model/data_pipeline', 'rb'))
     model_pip = pickle.load(open('model/model_pipeline', 'rb'))
 
+    # Load Data
     for img_path in imgs_paths:
         image = ImagesLoader([f"{sys.argv[1]}{img_path}"])
         start = time.time()
@@ -27,11 +29,12 @@ if __name__ == "__main__":
         y_pred.append(pred)
         times.append(end - start)
 
+    # Save Results
     with open(f"{sys.argv[2]}results.txt", "w") as out:
         for pred in y_pred:
             out.write(str(pred[0]))
             out.write('\n')
-
+    # Save Times
     with open(f"{sys.argv[2]}times.txt", "w") as out:
         for t in times:
             out.write(str(max(0.01, round(t, 2))))

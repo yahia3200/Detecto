@@ -13,10 +13,14 @@
 '''
 
 import numpy as np 
+import os
 
 '''--Read submission.readme before you run or update this script--'''
 
 OUTPUT_DIRECTORY = "./out/" ## * Appended Path of outputs
+if not os.path.exists(OUTPUT_DIRECTORY):
+    os.mkdir(OUTPUT_DIRECTORY)
+    
 
 ## * Classification Evaluation:
 truth = None
